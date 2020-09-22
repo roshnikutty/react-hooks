@@ -1,35 +1,34 @@
 import React, { useState } from 'react';
 import './App.scss';
 
-function App() {
+const App = () => {
   let [count, setCount] = useState(0);
-  
-  const handleIncrementClick = (e) => {
+
+  const handleClick = (e, actionType) => {
     e.preventDefault();
-    return setCount(count + 1);
-  }
-  const handleDecrementClick = (e) => {
-    e.preventDefault();
-    return setCount(count - 1);
+    return actionType === 'up' ? setCount(count + 1) : setCount(count - 1);
   }
 
-  
+
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className='App'>
+      <div className='App-header'>
         <h1>
-          { count }
+          {count}
         </h1>
-        <button
-          onClick={(e)=>handleIncrementClick(e)}>
+        <div className='flex'>
+          <button
+          className='btn-style'
+            onClick={(e) => handleClick(e, 'up')}>
             Increment Count
           </button>
           <button
-            onClick={(e)=>handleDecrementClick(e)}>
+            className='btn-style'
+            onClick={(e) => handleClick(e, 'down')}>
             Decrement Count
           </button>
-
-      </header>
+        </div>
+      </div>
     </div>
   );
 }
